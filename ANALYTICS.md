@@ -21,11 +21,11 @@ This landing page uses Google Analytics 4 to measure external traffic and outbou
 Create `.env.local` in the project root:
 
 ```env
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GA_ID=G-5HFXLE24TZ
 NEXT_PUBLIC_SITE_URL=https://pricklypearjelly.mohidenterprisesllc.com
 ```
 
-Replace `G-XXXXXXXXXX` with your Measurement ID.
+These must also be set in **Vercel → Project → Settings → Environment Variables** for **Production**, then the project must be **redeployed**. `NEXT_PUBLIC_*` values are baked in at build time.
 
 Restart the dev server after changing env vars.
 
@@ -114,3 +114,53 @@ When `NODE_ENV !== "production"`, a **Traffic Debug** panel appears (top-right o
 - Landing URL
 
 Use this to verify source tracking without opening GA4.
+
+## 8. Troubleshooting: GA4 not receiving data
+
+`NEXT_PUBLIC_GA_ID` is inlined at **build time**. Adding it in Vercel after a deploy does nothing until you **redeploy**.
+
+### Confirm the Google tag is on the page (Chrome)
+
+1. Open `https://pricklypearjelly.mohidenterprisesllc.com/prickly-pear-guide`
+2. Right-click → **View page source** (or DevTools → Elements)
+3. Search for `G-5HFXLE24TZ`
+4. You should see **exactly one** of each:
+   - `https://www.googletagmanager.com/gtag/js?id=G-5HFXLE24TZ`
+   - `gtag('config', 'G-5HFXLE24TZ');`
+
+### Confirm gtag.js at runtime
+
+1. Open Chrome DevTools → **Network**
+2. Reload the page
+3. Filter by `gtag`
+4. Confirm a request to `googletagmanager.com/gtag/js?id=G-5HFXLE24TZ` with status 200
+
+Optional Console check:
+
+```js
+typeof gtag
+window.dataLayer
+```
+
+`typeof gtag` should be `"function"`.
+
+### Check GA4 Realtime
+
+1. Open [Google Analytics](https://analytics.google.com/)
+2. Select the property that owns stream `G-5HFXLE24TZ`
+3. Go to **Reports → Realtime**
+4. Load the production page in a new tab (disable ad blockers)
+5. You should see 1 active user within about 30 seconds
+
+### Verify `amazon_cta_click`
+
+1. In Chrome DevTools → **Network**, filter by `google-analytics` or `collect`
+2. Click **View on Amazon**
+3. Look for a request containing `en=amazon_cta_click` (or use GA4 **Admin → DebugView**)
+4. Confirm event parameters: `source`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `placement`
+
+If Realtime stays empty:
+
+- Disable ad blockers / privacy extensions
+- Confirm you are looking at the same GA4 property as `G-5HFXLE24TZ`
+- Confirm Vercel **Production** has `NEXT_PUBLIC_GA_ID=G-5HFXLE24TZ` and you redeployed **after** adding it

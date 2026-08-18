@@ -20,7 +20,8 @@ declare global {
 }
 
 export function getGaId(): string | undefined {
-  return process.env.NEXT_PUBLIC_GA_ID;
+  const id = process.env.NEXT_PUBLIC_GA_ID?.trim();
+  return id || undefined;
 }
 
 export function isGAEnabled(): boolean {
@@ -40,6 +41,28 @@ function buildTrafficParams(): EventParams {
   };
 }
 
+function waitForGtag(callback: () => void, timeoutMs = 4000): void {
+  if (typeof window === "undefined") return;
+
+  if (typeof window.gtag === "function") {
+    callback();
+    return;
+  }
+
+  const started = Date.now();
+  const timer = window.setInterval(() => {
+    if (typeof window.gtag === "function") {
+      window.clearInterval(timer);
+      callback();
+      return;
+    }
+
+    if (Date.now() - started > timeoutMs) {
+      window.clearInterval(timer);
+    }
+  }, 50);
+}
+
 export function trackEvent(
   eventName: string,
   params: EventParams = {},
@@ -47,13 +70,13 @@ export function trackEvent(
 ): void {
   if (!isGAEnabled()) return;
 
-  const payload = {
-    ...buildTrafficParams(),
-    ...params,
-    ...(options.useBeacon ? { transport_type: "beacon" as const } : {}),
-  };
-
-  window.gtag?.("event", eventName, payload);
+  waitForGtag(() => {
+    window.gtag?.("event", eventName, {
+      ...buildTrafficParams(),
+      ...params,
+      ...(options.useBeacon ? { transport_type: "beacon" as const } : {}),
+    });
+  });
 }
 
 export function trackPageView(pagePath?: string): void {
@@ -61,9 +84,12 @@ export function trackPageView(pagePath?: string): void {
 
   const path = pagePath ?? window.location.pathname + window.location.search;
 
-  window.gtag?.("event", "page_view", {
-    page_path: path,
-    ...buildTrafficParams(),
+  waitForGtag(() => {
+    window.gtag?.("event", "page_view", {
+      page_path: path,
+      page_location: window.location.href,
+      ...buildTrafficParams(),
+    });
   });
 }
 
@@ -76,21 +102,23 @@ export function trackAmazonClick(
     return;
   }
 
-  const params = {
-    ...buildTrafficParams(),
-    placement,
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    onComplete?.();
   };
 
-  window.gtag?.("event", "amazon_cta_click", {
-    ...params,
-    transport_type: "beacon",
-    event_callback: () => {
-      onComplete?.();
-    },
+  waitForGtag(() => {
+    window.gtag?.("event", "amazon_cta_click", {
+      ...buildTrafficParams(),
+      placement,
+      transport_type: "beacon",
+      event_callback: finish,
+    });
   });
 
-  // Fallback if callback never fires (ad blockers, etc.)
-  window.setTimeout(() => onComplete?.(), 300);
+  window.setTimeout(finish, 400);
 }
 
 export function trackScrollDepth(threshold: 50 | 90): void {
