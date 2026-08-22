@@ -171,6 +171,7 @@ export const FAQ_ITEMS = [
 export const NAV_LINKS = [
   { href: "#what-is-prickly-pear", label: "What Is It" },
   { href: "#ways-to-use", label: "Ways to Use It" },
+  { href: "/recipes/arizona-sunrise-muffins", label: "Recipes" },
   { href: "#product", label: "Product" },
   { href: "#faq", label: "FAQ" },
 ] as const;

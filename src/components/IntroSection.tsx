@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { IMAGES, PRODUCT } from "@/config/product";
 import { SectionContainer, SectionHeading } from "./ui";
 
@@ -28,7 +29,15 @@ export function IntroSection() {
                 {PRODUCT.name}
               </strong>{" "}
               is a small-batch style preserve made with organic prickly pear
-              cactus and a short list of recognizable ingredients.
+              cactus and a short list of recognizable ingredients. For a
+              homemade bake that uses the jelly as a bright center filling, try{" "}
+              <Link
+                href="/recipes/arizona-sunrise-muffins"
+                className="font-semibold text-pear underline-offset-4 hover:underline"
+              >
+                Arizona Sunrise Muffins
+              </Link>
+              .
             </p>
           </div>
 

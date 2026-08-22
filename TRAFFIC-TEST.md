@@ -32,6 +32,22 @@ https://pricklypearjelly.mohidenterprisesllc.com/prickly-pear-guide?src=reddit-f
 
 Use in food, cooking, or specialty ingredient discussions.
 
+### Facebook Recipe Groups - Arizona Sunrise Muffins
+
+```
+https://pricklypearjelly.mohidenterprisesllc.com/recipes/arizona-sunrise-muffins?src=facebook-easy-homemade-muffins
+https://pricklypearjelly.mohidenterprisesllc.com/recipes/arizona-sunrise-muffins?src=facebook-simple-recipes
+https://pricklypearjelly.mohidenterprisesllc.com/recipes/arizona-sunrise-muffins?src=facebook-breakfast-muffins
+```
+
+Use these when sharing the muffin recipe in Facebook food, breakfast, or homemade baking groups. Prefer the recipe URL over the guide URL for recipe-group traffic.
+
+### Pinterest - Sunrise Muffins
+
+```
+https://pricklypearjelly.mohidenterprisesllc.com/recipes/arizona-sunrise-muffins?src=pinterest-sunrise-muffins
+```
+
 ### Facebook
 
 ```

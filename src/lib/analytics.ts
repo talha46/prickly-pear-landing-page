@@ -8,7 +8,13 @@ export type AmazonPlacement =
   | "final-cta"
   | "faq"
   | "sticky-mobile"
-  | "uses-grid";
+  | "uses-grid"
+  | "recipe-hero"
+  | "recipe-product-spotlight"
+  | "recipe-final-cta"
+  | "recipe-faq"
+  | "recipe-sticky-mobile"
+  | "recipe-card";
 
 type EventParams = Record<string, string | number | boolean | undefined>;
 
@@ -25,7 +31,11 @@ export function getGaId(): string | undefined {
 }
 
 export function isGAEnabled(): boolean {
-  return typeof window !== "undefined" && Boolean(getGaId());
+  if (typeof window === "undefined") return false;
+  if (Boolean(getGaId())) return true;
+  return Boolean(
+    (window as Window & { __TEST_GA__?: boolean }).__TEST_GA__
+  );
 }
 
 function buildTrafficParams(): EventParams {
@@ -97,11 +107,6 @@ export function trackAmazonClick(
   placement: AmazonPlacement,
   onComplete?: () => void
 ): void {
-  if (!isGAEnabled()) {
-    onComplete?.();
-    return;
-  }
-
   let finished = false;
   const finish = () => {
     if (finished) return;
@@ -109,16 +114,42 @@ export function trackAmazonClick(
     onComplete?.();
   };
 
-  waitForGtag(() => {
-    window.gtag?.("event", "amazon_cta_click", {
-      ...buildTrafficParams(),
-      placement,
-      transport_type: "beacon",
-      event_callback: finish,
-    });
-  });
+  if (typeof window === "undefined") {
+    finish();
+    return;
+  }
 
-  window.setTimeout(finish, 400);
+  const params = {
+    ...buildTrafficParams(),
+    placement,
+  };
+
+  const send = () => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "amazon_cta_click", {
+        ...params,
+        transport_type: "beacon",
+        event_callback: finish,
+      });
+      window.setTimeout(finish, 400);
+      return;
+    }
+    finish();
+  };
+
+  if (typeof window.gtag === "function") {
+    send();
+    return;
+  }
+
+  // If GA is configured, wait briefly for the script; otherwise complete immediately.
+  if (getGaId()) {
+    waitForGtag(send, 1500);
+    window.setTimeout(finish, 1600);
+    return;
+  }
+
+  finish();
 }
 
 export function trackScrollDepth(threshold: 50 | 90): void {

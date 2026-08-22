@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { NAV_LINKS } from "@/config/product";
+import { GUIDE_PATH, NAV_LINKS } from "@/config/product";
 import { AmazonLink } from "@/components/AmazonLink";
 
 export function Header() {
@@ -12,7 +12,7 @@ export function Header() {
         className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-8"
       >
         <Link
-          href="#"
+          href={GUIDE_PATH}
           className="shrink-0 font-serif text-lg font-bold text-cactus md:text-xl"
         >
           Prickly Pear Guide

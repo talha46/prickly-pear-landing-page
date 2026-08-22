@@ -34,7 +34,20 @@ Production guide URL:
 https://pricklypearjelly.mohidenterprisesllc.com/prickly-pear-guide
 ```
 
+Recipe page:
+
+```
+https://pricklypearjelly.mohidenterprisesllc.com/recipes/arizona-sunrise-muffins
+```
+
 The root `/` redirects to `/prickly-pear-guide` (preserving query params).
+
+## Tests
+
+```bash
+npm run build
+npm run test:e2e:recipe
+```
 
 ## Stack
 

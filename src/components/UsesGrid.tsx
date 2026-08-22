@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { USES } from "@/config/product";
 import { AmazonLink } from "@/components/AmazonLink";
 import { CtaMicrocopy } from "@/components/CtaMicrocopy";
 import { SectionContainer, SectionHeading } from "./ui";
+
 export function UsesGrid() {
   return (
     <SectionContainer
@@ -12,7 +14,7 @@ export function UsesGrid() {
       <SectionHeading
         id="ways-to-use-heading"
         title="7 Ways to Use Prickly Pear Jelly"
-        subtitle="From breakfast spreads to prickly pear glazes—ideas to get you started."
+        subtitle="From breakfast spreads to prickly pear glazes - ideas to get you started."
         align="center"
       />
 
@@ -42,7 +44,14 @@ export function UsesGrid() {
         Serving suggestions on the product label include prickly pear glazes for
         lamb and pork, fresh fruit toppings, and Prickly Pear Cheesecake. See{" "}
         <span className="font-medium">{USES[6].title.toLowerCase()}</span> for
-        your own culinary experiments.
+        your own culinary experiments. Looking for a full bake? Try{" "}
+        <Link
+          href="/recipes/arizona-sunrise-muffins"
+          className="font-semibold text-pear underline-offset-4 hover:underline"
+        >
+          Arizona Sunrise Muffins with a prickly pear jelly center
+        </Link>
+        .
       </p>
 
       <div className="mt-10 text-center">
