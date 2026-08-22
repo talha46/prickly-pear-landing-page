@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { IMAGES } from "@/config/product";
+import Link from "next/link";
+import { GUIDE_PATH, IMAGES } from "@/config/product";
 import type { RecipeDefinition } from "@/config/recipes";
 import { RecipeImageReveal, RecipeReveal } from "./RecipeReveal";
 
@@ -22,13 +23,22 @@ export function RecipeWhy({ recipe }: { recipe: RecipeDefinition }) {
             {recipe.whyBody.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
+            <p>
+              <Link
+                href={GUIDE_PATH}
+                className="font-semibold text-pear underline decoration-pear/30 underline-offset-2 transition-colors hover:text-pear-dark"
+              >
+                Learn more about prickly pear jelly
+              </Link>
+              .
+            </p>
           </div>
         </RecipeReveal>
 
         <RecipeImageReveal className="relative order-1 aspect-square rounded-sm shadow-lg lg:order-2">
           <Image
             src={IMAGES.sliced}
-            alt="Halved prickly pear fruit showing vivid magenta flesh next to a green cactus pad"
+            alt="Prickly pear fruit halved to show vivid magenta flesh"
             fill
             loading="lazy"
             className="object-cover"

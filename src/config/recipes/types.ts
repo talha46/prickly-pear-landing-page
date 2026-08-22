@@ -29,6 +29,11 @@ export type RecipeImages = {
   lifestyle?: string;
 };
 
+export type RecipeTechniqueSection = {
+  headline: string;
+  items: string[];
+};
+
 export type RecipeDefinition = {
   slug: string;
   path: string;
@@ -38,12 +43,21 @@ export type RecipeDefinition = {
   headline: string;
   subheadline: string;
   meta: string[];
+  /** ISO date for structured data and visible freshness (YYYY-MM-DD) */
+  dateModified: string;
+  /** Visible "Updated" label, e.g. "August 22, 2026" */
+  updatedLabel: string;
   surpriseHeadline: string;
   surpriseBody: string[];
   whyHeadline: string;
   whyBody: string[];
+  techniqueSections: RecipeTechniqueSection[];
+  tipsHeadline: string;
+  tipsBody: string[];
   ingredients: RecipeIngredient[];
   ingredientsNote: string;
+  stepsHeadline: string;
+  stepsIntro: string;
   steps: RecipeStep[];
   bakeTemp: string;
   bakeTempConvection: string;
@@ -53,5 +67,7 @@ export type RecipeDefinition = {
   moreUses: RecipeMoreUse[];
   images: RecipeImages;
   ogImage: string;
+  /** Recipe concept attribution — not ownership */
+  recipeSource: string;
   sourceMessages?: Record<string, string>;
 };

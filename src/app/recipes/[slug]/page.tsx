@@ -33,6 +33,10 @@ export async function generateMetadata({
     alternates: {
       canonical: recipe.path,
     },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title: recipe.seoTitle,
       description: recipe.seoDescription,
@@ -45,7 +49,7 @@ export async function generateMetadata({
           url: recipe.ogImage,
           width: 1600,
           height: 900,
-          alt: `${recipe.title} with prickly pear jelly center`,
+          alt: "Arizona Sunrise Muffins with prickly pear jelly centers",
         },
       ],
     },

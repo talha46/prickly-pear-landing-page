@@ -22,10 +22,11 @@ export function RecipeProductSpotlight({
             id="product-heading"
             className="font-serif text-3xl font-bold tracking-tight text-charcoal md:text-4xl"
           >
-            Prickly Pear Cactus Jelly
+            Where to Get Prickly Pear Jelly
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-charcoal-light">
-            The 5 oz jar used for this muffin-filling test.
+            Cheri&apos;s Desert Harvest Prickly Pear Cactus Jelly — 5 OZ / 140g
+            (ASIN B000MBM8T8).
           </p>
         </RecipeReveal>
 
@@ -33,7 +34,7 @@ export function RecipeProductSpotlight({
           <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-sm bg-sand-light p-6 shadow-lg">
             <Image
               src={recipe.images.product}
-              alt="Cheri's Desert Harvest Prickly Pear Cactus Jelly jar, 5 oz, with gold lid and desert-themed label"
+              alt="Cheri's Desert Harvest Prickly Pear Cactus Jelly 5 oz jar"
               fill
               loading="lazy"
               className="object-contain p-4"

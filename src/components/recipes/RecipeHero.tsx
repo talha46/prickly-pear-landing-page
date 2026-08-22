@@ -27,7 +27,7 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
       <div className="absolute inset-0">
         <Image
           src={recipe.images.hero}
-          alt="Editorial photo of golden Arizona Sunrise Muffins with a bright magenta jelly center"
+          alt="Arizona Sunrise Muffins with prickly pear jelly centers on a rustic board"
           fill
           priority
           className="object-cover object-center opacity-45"
@@ -78,7 +78,7 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
         <RecipeReveal className="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-sm shadow-2xl ring-1 ring-gold/25 md:max-w-none">
           <Image
             src={recipe.images.cutOpen}
-            alt="Close-up of a golden muffin cut open to show a glossy magenta prickly pear jelly center"
+            alt="Prickly pear jelly visible inside a sliced homemade muffin"
             fill
             priority
             className="object-cover"

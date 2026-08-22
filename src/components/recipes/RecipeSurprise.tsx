@@ -13,7 +13,7 @@ export function RecipeSurprise({ recipe }: { recipe: RecipeDefinition }) {
         <RecipeImageReveal className="relative aspect-[4/3] rounded-sm shadow-lg">
           <Image
             src={recipe.images.cutOpen}
-            alt="Arizona Sunrise Muffin halved to reveal the bright prickly pear jelly surprise inside"
+            alt="Arizona Sunrise Muffins with prickly pear jelly centers"
             fill
             loading="lazy"
             className="object-cover"

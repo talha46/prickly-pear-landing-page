@@ -24,9 +24,15 @@ export function RecipeCard({ recipe }: { recipe: RecipeDefinition }) {
               id="recipe-card-heading"
               className="font-serif text-3xl font-bold text-charcoal md:text-4xl"
             >
-              {recipe.title}
+              Recipe Card
             </h2>
+            <p className="mt-2 font-serif text-xl font-bold text-charcoal">
+              {recipe.title}
+            </p>
             <p className="mt-2 text-charcoal-light">{recipe.subheadline}</p>
+            <p className="mt-2 text-sm text-charcoal-light">
+              Updated {recipe.updatedLabel} · Recipe concept: {recipe.recipeSource}
+            </p>
             <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-charcoal-light">
               <div>
                 <dt className="inline font-semibold text-charcoal">Difficulty: </dt>
