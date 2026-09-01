@@ -54,24 +54,18 @@ export function buildRecipeJsonLd(recipe: RecipeDefinition) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
-        item: SITE_URL,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
         name: "Prickly Pear Guide",
         item: `${SITE_URL}${GUIDE_PATH}`,
       },
       {
         "@type": "ListItem",
-        position: 3,
+        position: 2,
         name: "Recipes",
         item: `${SITE_URL}${RECIPES_ANCHOR}`,
       },
       {
         "@type": "ListItem",
-        position: 4,
+        position: 3,
         name: recipe.title,
         item: recipeUrl,
       },

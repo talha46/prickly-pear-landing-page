@@ -9,17 +9,15 @@ import { RecipeReveal } from "./RecipeReveal";
 
 type RecipeHeroProps = {
   recipe: RecipeDefinition;
+  children: React.ReactNode;
 };
 
-export function RecipeHero({ recipe }: RecipeHeroProps) {
+export function RecipeHero({ recipe, children }: RecipeHeroProps) {
   const [sourceMessage, setSourceMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const { source } = getTrafficContext();
-    const message =
-      recipe.sourceMessages?.[source] ??
-      null;
-    setSourceMessage(message);
+    setSourceMessage(recipe.sourceMessages?.[source] ?? null);
   }, [recipe.sourceMessages]);
 
   return (
@@ -46,9 +44,7 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
               {sourceMessage}
             </p>
           )}
-          <h1 className="mt-4 font-serif text-4xl font-bold leading-[1.1] text-white md:text-5xl lg:text-[3.25rem]">
-            {recipe.headline}
-          </h1>
+          {children}
           <p className="mt-4 max-w-md text-lg leading-relaxed text-sand md:text-xl">
             {recipe.subheadline}
           </p>

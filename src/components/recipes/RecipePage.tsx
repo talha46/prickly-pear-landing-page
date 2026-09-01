@@ -33,7 +33,11 @@ export function RecipePage({ recipe }: { recipe: RecipeDefinition }) {
       <RecipeHeader recipe={recipe} />
       <RecipeBreadcrumbs recipe={recipe} />
       <main className="pb-24 md:pb-0">
-        <RecipeHero recipe={recipe} />
+        <RecipeHero recipe={recipe}>
+          <h1 className="mt-4 font-serif text-4xl font-bold leading-[1.1] text-white md:text-5xl lg:text-[3.25rem]">
+            {recipe.headline}
+          </h1>
+        </RecipeHero>
         <RecipeSurprise recipe={recipe} />
         <RecipeWhy recipe={recipe} />
         <RecipeTechnique recipe={recipe} />

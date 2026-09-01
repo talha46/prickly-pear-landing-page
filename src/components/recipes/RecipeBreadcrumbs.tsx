@@ -4,7 +4,6 @@ import type { RecipeDefinition } from "@/config/recipes";
 
 export function RecipeBreadcrumbs({ recipe }: { recipe: RecipeDefinition }) {
   const crumbs = [
-    { label: "Home", href: GUIDE_PATH },
     { label: "Prickly Pear Guide", href: GUIDE_PATH },
     { label: "Recipes", href: `${GUIDE_PATH}#recipes` },
     { label: recipe.title, href: recipe.path, current: true },

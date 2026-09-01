@@ -354,7 +354,15 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     expect(recipeSchema.recipeYield).toBeUndefined();
 
     expect(breadcrumbSchema).toBeDefined();
-    expect(breadcrumbSchema.itemListElement).toHaveLength(4);
+    expect(breadcrumbSchema.itemListElement).toHaveLength(3);
+    expect(breadcrumbSchema.itemListElement[0].name).toBe("Prickly Pear Guide");
+    expect(breadcrumbSchema.itemListElement[0].item).toBe(
+      `${SITE_URL}${GUIDE_PATH}`
+    );
+    expect(breadcrumbSchema.itemListElement[1].item).toBe(
+      `${SITE_URL}${GUIDE_PATH}#recipes`
+    );
+    expect(breadcrumbSchema.itemListElement[2].item).toBe(CANONICAL_URL);
   });
 
   test("ingredients and instructions exist in server-rendered HTML", async ({
@@ -371,12 +379,30 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     );
   });
 
-  test("breadcrumbs are visible", async ({ page }) => {
+  test("breadcrumbs are visible with canonical URLs", async ({ page }) => {
     await page.goto(RECIPE_PATH);
     const nav = page.getByRole("navigation", { name: "Breadcrumb" });
     await expect(nav).toBeVisible();
-    await expect(nav).toContainText("Prickly Pear Guide");
-    await expect(nav).toContainText("Recipes");
+    await expect(nav.getByRole("link", { name: "Prickly Pear Guide" })).toHaveAttribute(
+      "href",
+      "/prickly-pear-guide"
+    );
+    await expect(nav.getByRole("link", { name: "Recipes" })).toHaveAttribute(
+      "href",
+      "/prickly-pear-guide#recipes"
+    );
+    await expect(nav).toContainText("Arizona Sunrise Muffins with Prickly Pear Jelly");
+  });
+
+  test("server-rendered HTML contains exactly one H1", async ({ page }) => {
+    await page.goto(RECIPE_PATH);
+    const html = await page.content();
+    const h1Matches = html.match(/<h1[\s>]/g) ?? [];
+    expect(h1Matches).toHaveLength(1);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toHaveText(
+      "Arizona Sunrise Muffins with Prickly Pear Jelly"
+    );
   });
 });
 
