@@ -81,6 +81,9 @@ export function RecipeCard({ recipe }: { recipe: RecipeDefinition }) {
             <p className="mt-4 text-xs leading-relaxed text-charcoal-light">
               {recipe.ingredientsNote}
             </p>
+            <p className="mt-3 rounded-sm border border-sand-dark bg-sand-light p-3 text-xs leading-relaxed text-charcoal-light">
+              {recipe.productJarNote}
+            </p>
           </div>
 
           <div>

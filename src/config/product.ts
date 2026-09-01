@@ -1,5 +1,7 @@
 export const GUIDE_UPDATED = "August 2026";
 
+export const GUIDE_UPDATED_ISO = "2026-08-22";
+
 export const GUIDE_PATH = "/prickly-pear-guide";
 
 export const AMAZON_PRODUCT_URL =

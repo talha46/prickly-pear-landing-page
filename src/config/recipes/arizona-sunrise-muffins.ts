@@ -9,20 +9,25 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
     "Make Arizona Sunrise Muffins with a bright prickly pear jelly center. Learn how to make these easy homemade muffins and discover more ways to use prickly pear jelly.",
   headline: "Arizona Sunrise Muffins with Prickly Pear Jelly",
   subheadline:
-    "Golden homemade muffins with a bright prickly pear jelly center — a Southwest-inspired breakfast treat.",
+    "Golden homemade muffins with a bright prickly pear jelly center — based on Cheri's Desert Harvest's Arizona Sunrise Muffins recipe.",
   meta: [
     "Homemade muffins",
     "Prickly pear jelly filling",
-    "375°F / 350°F convection",
+    "400°F / 375°F convection",
     "20–25 minutes",
   ],
-  dateModified: "2026-08-22",
-  updatedLabel: "August 22, 2026",
-  recipeSource: "Cheri's Desert Harvest",
+  datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
+  updatedLabel: "September 1, 2026",
+  recipeSource: "Cheri's Desert Harvest's Arizona Sunrise Muffins recipe",
+  productJarNote:
+    "The original Cheri's Desert Harvest recipe calls for an 8-ounce jar of prickly pear jelly. The product shown on this page is the 5 oz (140g) jar available through our Amazon listing.",
+  disclosureText:
+    "Recipe source: Cheri's Desert Harvest's Arizona Sunrise Muffins recipe. This page is an independent recipe and educational page and is not the official Cheri's Desert Harvest website. The author/operator may earn from sales of the product linked below.",
   surpriseHeadline: "What Are Arizona Sunrise Muffins?",
   surpriseBody: [
     "Arizona Sunrise Muffins are golden homemade muffins with a bright prickly pear jelly center that appears when you bite or slice into them.",
-    "The recipe concept comes from Cheri's Desert Harvest. You partially fill each muffin cup, add about 1 teaspoon of prickly pear jelly in the center, cover with remaining batter, and bake until golden.",
+    "This walkthrough follows Cheri's Desert Harvest's Arizona Sunrise Muffins recipe: fill muffin tins half full, place 1 teaspoon of prickly pear jelly in the exact center (keeping jelly away from the edges), cover with remaining batter, and bake until golden.",
     "The result is a soft muffin with a glossy, fruit-forward surprise inside — a simple technique that works well for breakfast, brunch, or a Southwest-themed spread.",
   ],
   whyHeadline: "Why Use Prickly Pear Jelly?",
@@ -36,10 +41,11 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
       headline: "Why the Jelly Goes in the Center",
       items: [
         "Fill each muffin cup about halfway with batter — do not fill to the top yet.",
-        "Place approximately 1 teaspoon of prickly pear jelly in the center of the batter.",
+        "Place 1 teaspoon of prickly pear jelly in the exact center of the batter.",
         "Keep the jelly away from the edges of the cup so it stays sealed inside.",
         "Spoon remaining batter over the jelly to cover it completely.",
-        "Bake until the tops are golden and a toothpick in the muffin edge comes out clean.",
+        "Tins should be about two-thirds full before baking.",
+        "Bake until the tops are golden.",
       ],
     },
     {
@@ -47,7 +53,7 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
       items: [
         "Putting jelly against the muffin edge — it can leak out during baking.",
         "Overfilling the cup — batter needs room to rise without overflowing.",
-        "Using too much jelly — about 1 teaspoon per muffin is enough; more can burst through.",
+        "Using too much jelly — 1 teaspoon per muffin is enough; more can burst through.",
         "Not sealing the jelly with enough batter — the top layer should fully cover the jelly.",
       ],
     },
@@ -63,75 +69,74 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
   ],
   tipsHeadline: "Tips for Using Prickly Pear Jelly in Muffins",
   tipsBody: [
-    "About 1 teaspoon of jelly per muffin is a practical starting point. Adjust slightly based on muffin size, but avoid overfilling.",
+    "1 teaspoon of jelly per muffin matches the source recipe's placement guidance. Adjust slightly based on muffin size, but avoid overfilling.",
     "If you substitute another jam, choose one with a similar consistency — thick, spoonable, and not too runny.",
-    "Store leftover jelly in the refrigerator after opening. A 5 oz jar provides enough jelly for many batches of muffins.",
+    "Store leftover jelly in the refrigerator after opening.",
     "Explore more ways to use prickly pear jelly beyond muffins — glazes, toast, cheese boards, and cocktails all work well.",
   ],
   ingredients: [
     { amount: "2 cups", item: "all-purpose flour" },
-    { amount: "1 cup", item: "granulated sugar" },
-    { amount: "1 tbsp", item: "baking powder" },
+    { amount: "1/4 cup", item: "sugar" },
+    { amount: "3 tsp", item: "baking powder" },
     { amount: "1/2 tsp", item: "salt" },
-    { amount: "1", item: "large egg" },
-    { amount: "1 cup", item: "whole milk" },
-    { amount: "1/2 cup", item: "vegetable oil" },
-    { amount: "1 tsp", item: "vanilla extract" },
+    { amount: "1/4 cup", item: "vegetable oil" },
+    { amount: "1", item: "egg, slightly beaten" },
+    { amount: "1 cup", item: "milk" },
     {
-      item: "Cheri's Desert Harvest Prickly Pear Cactus Jelly",
-      note: "about 1 tsp per muffin; amount depends on batch size",
+      item: "1 (8-ounce) jar Cheri's Prickly Pear Cactus Jelly",
+      note: "source recipe; 1 tsp per muffin",
     },
   ],
   ingredientsNote:
-    "Recipe source/concept: Cheri's Desert Harvest. The original Cheri's recipe calls for an 8-ounce jar. For this version, approximately 1 teaspoon of jelly is used per muffin, so the amount needed depends on the number and size of muffins. The product linked on this page is a 5 oz (140g) jar.",
+    "Ingredients listed above follow Cheri's Desert Harvest's Arizona Sunrise Muffins recipe.",
   stepsHeadline: "How to Make Arizona Sunrise Muffins",
   stepsIntro:
-    "Bake at 375°F (standard) or 350°F (convection) for 20–25 minutes, until golden and a toothpick inserted near the edge comes out clean.",
+    "Preheat to 400°F (standard) or 375°F (convection). Bake 20–25 minutes until golden.",
   steps: [
     {
-      title: "Prepare the Dry Ingredients",
-      body: "Preheat the oven to 375°F (standard) or 350°F (convection). Line a muffin tin with paper liners. In a large bowl, whisk together the flour, sugar, baking powder, and salt.",
+      title: "Preheat and Prepare Dry Ingredients",
+      body: "Preheat the oven to 400°F (standard) or 375°F (convection). Line a muffin tin with paper liners. Sift together the flour, sugar, baking powder, and salt in a large bowl.",
     },
     {
       title: "Mix the Wet Ingredients",
-      body: "In a separate bowl, whisk the egg, milk, vegetable oil, and vanilla extract until combined. Pour the wet mixture into the dry ingredients and stir just until incorporated — do not overmix.",
+      body: "In a separate bowl, whisk the vegetable oil, slightly beaten egg, and milk until frothy.",
+    },
+    {
+      title: "Combine Batter",
+      body: "Pour the wet mixture into the dry ingredients and stir until moistened. The batter will be lumpy — do not overmix.",
     },
     {
       title: "Fill the Muffin Cups",
-      body: "Spoon batter into each muffin cup, filling each about halfway. Leave room for the jelly and the top layer of batter.",
+      body: "Fill muffin tins half full with batter.",
     },
     {
       title: "Add the Prickly Pear Jelly",
-      body: "Place approximately 1 teaspoon of prickly pear jelly in the center of the batter in each cup. Keep the jelly away from the edges.",
+      body: "Place 1 teaspoon of prickly pear jelly in the exact center of the batter in each cup, keeping the jelly away from the edges.",
     },
     {
       title: "Cover and Bake",
-      body: "Spoon remaining batter over the jelly to cover it completely. Bake for 20–25 minutes, until the tops are golden and a toothpick inserted near the edge (not the center) comes out clean.",
-    },
-    {
-      title: "Cool and Serve",
-      body: "Cool in the pan for a few minutes, then transfer to a wire rack. Serve warm or at room temperature to reveal the jelly center when sliced.",
+      body: "Cover with remaining batter. Tins should be about two-thirds full. Bake for 20–25 minutes until golden.",
     },
   ],
-  bakeTemp: "375°F",
-  bakeTempConvection: "350°F convection",
+  bakeTemp: "400°F",
+  bakeTempConvection: "375°F convection",
   bakeTime: "20–25 minutes",
   difficulty: "Easy",
   faq: [
     {
       question: "What are Arizona Sunrise Muffins?",
       answer:
-        "Arizona Sunrise Muffins are homemade muffins with a prickly pear jelly center. The recipe concept comes from Cheri's Desert Harvest — you partially fill muffin cups, add jelly in the center, cover with batter, and bake until golden.",
+        "Arizona Sunrise Muffins are homemade muffins with a prickly pear jelly center. The recipe comes from Cheri's Desert Harvest — you fill muffin tins half full, add 1 teaspoon of jelly in the exact center, cover with batter, and bake until golden.",
     },
     {
       question: "How do you put jelly inside a muffin?",
       answer:
-        "Fill each muffin cup about halfway with batter, place approximately 1 teaspoon of jelly in the center, then spoon remaining batter on top to cover the jelly completely before baking.",
+        "Fill each muffin cup about halfway with batter, place 1 teaspoon of jelly in the exact center, then spoon remaining batter on top to cover the jelly completely before baking.",
     },
     {
       question: "How much prickly pear jelly should you put in a muffin?",
       answer:
-        "About 1 teaspoon per muffin is a practical starting point. Using more can cause the jelly to leak during baking; the exact amount may vary slightly with muffin size.",
+        "1 teaspoon per muffin matches the source recipe's guidance. Using more can cause the jelly to leak during baking; the exact amount may vary slightly with muffin size.",
     },
     {
       question: "What does prickly pear jelly taste like?",
@@ -146,7 +151,7 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
     {
       question: "What temperature do you bake these muffins at?",
       answer:
-        "Bake at 375°F in a standard oven, or 350°F if using convection, until the tops are golden and a toothpick inserted near the edge comes out clean.",
+        "Bake at 400°F in a standard oven, or 375°F if using convection, until the tops are golden.",
     },
     {
       question: "How long do Arizona Sunrise Muffins bake?",

@@ -18,6 +18,7 @@ export function buildRecipeJsonLd(recipe: RecipeDefinition) {
       url: `${SITE_URL}${GUIDE_PATH}`,
     },
     dateModified: recipe.dateModified,
+    ...(recipe.datePublished ? { datePublished: recipe.datePublished } : {}),
     recipeCategory: "Breakfast",
     recipeCuisine: "Southwestern",
     keywords: [

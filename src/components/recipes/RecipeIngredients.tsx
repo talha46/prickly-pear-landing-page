@@ -52,6 +52,9 @@ export function RecipeIngredients({ recipe }: { recipe: RecipeDefinition }) {
           <p className="mt-8 max-w-3xl text-sm leading-relaxed text-charcoal-light md:text-base">
             {recipe.ingredientsNote}
           </p>
+          <p className="mt-4 max-w-3xl rounded-sm border border-sand-dark bg-white p-4 text-sm leading-relaxed text-charcoal-light md:text-base">
+            {recipe.productJarNote}
+          </p>
         </RecipeReveal>
       </div>
     </section>

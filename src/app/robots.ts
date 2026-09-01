@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/config/product";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://pricklypearjelly.mohidenterprisesllc.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: ["/", "/prickly-pear-guide", "/recipes/"],
+      allow: "/",
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

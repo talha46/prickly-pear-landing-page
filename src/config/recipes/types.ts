@@ -45,6 +45,8 @@ export type RecipeDefinition = {
   meta: string[];
   /** ISO date for structured data and visible freshness (YYYY-MM-DD) */
   dateModified: string;
+  /** ISO first publication date when known from deployment history */
+  datePublished?: string;
   /** Visible "Updated" label, e.g. "August 22, 2026" */
   updatedLabel: string;
   surpriseHeadline: string;
@@ -69,5 +71,9 @@ export type RecipeDefinition = {
   ogImage: string;
   /** Recipe concept attribution — not ownership */
   recipeSource: string;
+  /** Visible note distinguishing source 8 oz jar from linked 5 oz product */
+  productJarNote: string;
+  /** Independent operator disclosure shown near product area */
+  disclosureText: string;
   sourceMessages?: Record<string, string>;
 };

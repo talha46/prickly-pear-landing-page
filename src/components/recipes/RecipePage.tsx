@@ -13,6 +13,7 @@ import { RecipeSteps } from "./RecipeSteps";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeTips } from "./RecipeTips";
 import { RecipeProductSpotlight } from "./RecipeProductSpotlight";
+import { RecipeDisclosure } from "./RecipeDisclosure";
 import { RecipeMoreUses } from "./RecipeMoreUses";
 import { RecipeFAQ } from "./RecipeFAQ";
 import { RecipeFinalCTA } from "./RecipeFinalCTA";
@@ -41,6 +42,7 @@ export function RecipePage({ recipe }: { recipe: RecipeDefinition }) {
         <RecipeCard recipe={recipe} />
         <RecipeTips recipe={recipe} />
         <RecipeProductSpotlight recipe={recipe} />
+        <RecipeDisclosure recipe={recipe} />
         <RecipeMoreUses recipe={recipe} />
         <RecipeFAQ recipe={recipe} />
         <RecipeFinalCTA recipe={recipe} />

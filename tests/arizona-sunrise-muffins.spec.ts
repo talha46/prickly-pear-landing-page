@@ -1,9 +1,21 @@
 import { test, expect } from "@playwright/test";
-import { AMAZON_PRODUCT_URL, SITE_URL } from "../src/config/product";
+import { AMAZON_PRODUCT_URL, SITE_URL, GUIDE_PATH, GUIDE_UPDATED_ISO } from "../src/config/product";
 
 const RECIPE_PATH = "/recipes/arizona-sunrise-muffins";
 const CANONICAL_URL = `${SITE_URL}${RECIPE_PATH}`;
+const GUIDE_URL = `${SITE_URL}${GUIDE_PATH}`;
 const SELLER_URL = AMAZON_PRODUCT_URL;
+
+const SOURCE_INGREDIENTS = [
+  "2 cups all-purpose flour",
+  "1/4 cup sugar",
+  "3 tsp baking powder",
+  "1/2 tsp salt",
+  "1/4 cup vegetable oil",
+  "1 egg, slightly beaten",
+  "1 cup milk",
+  "1 (8-ounce) jar Cheri's Prickly Pear Cactus Jelly",
+];
 
 test.describe("Arizona Sunrise Muffins recipe page", () => {
   test("page loads successfully with one H1 and required content", async ({
@@ -26,8 +38,8 @@ test.describe("Arizona Sunrise Muffins recipe page", () => {
       /How to Make Arizona Sunrise Muffins/i
     );
     await expect(page.locator("#recipe-card")).toContainText("Print Recipe");
-    await expect(page.getByText("about 1 teaspoon").first()).toBeVisible();
-    await expect(page.getByText(/Updated August 22, 2026/i)).toBeVisible();
+    await expect(page.getByText("1 teaspoon").first()).toBeVisible();
+    await expect(page.getByText(/Updated September 1, 2026/i)).toBeVisible();
   });
 
   test("hero Jump to Recipe scrolls to recipe card", async ({ page }) => {
@@ -129,7 +141,7 @@ test.describe("Arizona Sunrise Muffins recipe page", () => {
     await question.click();
     await expect(
       page.getByText(
-        "About 1 teaspoon per muffin is a practical starting point."
+        "1 teaspoon per muffin matches the source recipe's guidance."
       )
     ).toBeVisible();
   });
@@ -173,6 +185,63 @@ test.describe("Arizona Sunrise Muffins recipe page", () => {
     await expect(
       page.locator("header.sticky.print\\:hidden, header.sticky")
     ).toBeHidden();
+  });
+
+  test("recipe disclosure is visible near product area", async ({ page }) => {
+    await page.goto(RECIPE_PATH);
+    const disclosure = page.locator("#recipe-disclosure");
+    await expect(disclosure).toBeVisible();
+    await expect(disclosure).toContainText(
+      "Recipe source: Cheri's Desert Harvest's Arizona Sunrise Muffins recipe."
+    );
+    await expect(disclosure).toContainText(
+      "not the official Cheri's Desert Harvest website"
+    );
+    await expect(disclosure).toContainText(
+      "The original Cheri's Desert Harvest recipe calls for an 8-ounce jar"
+    );
+  });
+});
+
+test.describe("Arizona Sunrise Muffins source recipe accuracy", () => {
+  test("visible ingredients match Cheri's source recipe", async ({ page }) => {
+    await page.goto(RECIPE_PATH);
+    const ingredients = page.locator("#ingredients");
+    for (const ingredient of SOURCE_INGREDIENTS) {
+      await expect(ingredients).toContainText(ingredient);
+    }
+    await expect(ingredients).not.toContainText("vanilla extract");
+    await expect(ingredients).not.toContainText("1 cup sugar");
+  });
+
+  test("visible instructions match source baking guidance", async ({ page }) => {
+    await page.goto(RECIPE_PATH);
+    const directions = page.locator("#directions");
+    await expect(directions).toContainText("400°F (standard) or 375°F (convection)");
+    await expect(directions).toContainText("Sift together");
+    await expect(directions).toContainText("until frothy");
+    await expect(directions).toContainText("batter will be lumpy");
+    await expect(directions).toContainText("Fill muffin tins half full");
+    await expect(directions).toContainText(
+      "1 teaspoon of prickly pear jelly in the exact center"
+    );
+    await expect(directions).toContainText("keeping the jelly away from the edges");
+    await expect(directions).toContainText("two-thirds full");
+    await expect(directions).not.toContainText("350°F");
+    await expect(directions).not.toContainText("vanilla");
+  });
+
+  test("recipe card matches source temperatures and ingredients", async ({
+    page,
+  }) => {
+    await page.goto(RECIPE_PATH);
+    const card = page.locator("#printable-recipe");
+    await expect(card).toContainText("400°F");
+    await expect(card).toContainText("375°F convection");
+    await expect(card).toContainText("1/4 cup sugar");
+    await expect(card).toContainText("3 tsp baking powder");
+    await expect(card).toContainText("1/4 cup vegetable oil");
+    await expect(card).toContainText("8-ounce");
   });
 });
 
@@ -238,7 +307,9 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     );
   });
 
-  test("Recipe JSON-LD is valid and complete", async ({ page }) => {
+  test("Recipe JSON-LD matches visible source recipe content", async ({
+    page,
+  }) => {
     await page.goto(RECIPE_PATH);
     const scripts = page.locator('script[type="application/ld+json"]');
     await expect(scripts).not.toHaveCount(0);
@@ -254,19 +325,36 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     expect(recipeSchema.name).toBe(
       "Arizona Sunrise Muffins with Prickly Pear Jelly"
     );
-    expect(recipeSchema.recipeIngredient).toBeInstanceOf(Array);
-    expect(recipeSchema.recipeIngredient.length).toBeGreaterThan(0);
-    expect(recipeSchema.recipeInstructions).toBeInstanceOf(Array);
-    expect(recipeSchema.recipeInstructions.length).toBe(6);
+    expect(recipeSchema.datePublished).toBe("2026-08-22");
+    expect(recipeSchema.dateModified).toBe("2026-09-01");
+
+    for (const ingredient of SOURCE_INGREDIENTS) {
+      expect(
+        recipeSchema.recipeIngredient.some((entry: string) =>
+          entry.includes(ingredient)
+        )
+      ).toBe(true);
+    }
+
+    expect(recipeSchema.recipeInstructions).toHaveLength(6);
+    expect(recipeSchema.recipeInstructions[0].text).toContain("400°F");
+    expect(recipeSchema.recipeInstructions[0].text).toContain("375°F");
+    expect(recipeSchema.recipeInstructions[0].text).toContain("Sift");
+    expect(recipeSchema.recipeInstructions[1].text).toContain("frothy");
+    expect(recipeSchema.recipeInstructions[2].text).toContain("lumpy");
+    expect(recipeSchema.recipeInstructions[3].text).toContain("half full");
+    expect(recipeSchema.recipeInstructions[4].text).toContain("exact center");
+    expect(recipeSchema.recipeInstructions[5].text).toContain("two-thirds full");
+
     expect(recipeSchema.aggregateRating).toBeUndefined();
     expect(recipeSchema.review).toBeUndefined();
+    expect(recipeSchema.nutrition).toBeUndefined();
+    expect(recipeSchema.video).toBeUndefined();
+    expect(recipeSchema.prepTime).toBeUndefined();
+    expect(recipeSchema.recipeYield).toBeUndefined();
 
     expect(breadcrumbSchema).toBeDefined();
     expect(breadcrumbSchema.itemListElement).toHaveLength(4);
-    expect(breadcrumbSchema.itemListElement[0].name).toBe("Home");
-    expect(breadcrumbSchema.itemListElement[3].name).toBe(
-      "Arizona Sunrise Muffins with Prickly Pear Jelly"
-    );
   });
 
   test("ingredients and instructions exist in server-rendered HTML", async ({
@@ -275,7 +363,7 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     await page.goto(RECIPE_PATH);
     await expect(page.locator("#ingredients")).toContainText("all-purpose flour");
     await expect(page.locator("#directions")).toContainText(
-      "Prepare the Dry Ingredients"
+      "Preheat and Prepare Dry Ingredients"
     );
     await expect(page.locator("#directions")).toContainText("Cover and Bake");
     await expect(page.locator("#faq")).toContainText(
@@ -293,24 +381,43 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
 });
 
 test.describe("Site SEO infrastructure", () => {
-  test("sitemap.xml includes recipe URL without tracking params", async ({
-    request,
-  }) => {
-    const response = await request.get("/sitemap.xml");
-    expect(response.status()).toBe(200);
-    const body = await response.text();
-    expect(body).toContain(CANONICAL_URL);
-    expect(body).not.toContain("src=");
-  });
-
-  test("robots.txt allows crawling and references sitemap", async ({
+  test("robots.txt returns 200 with plain-text crawl policy", async ({
     request,
   }) => {
     const response = await request.get("/robots.txt");
     expect(response.status()).toBe(200);
+
+    const contentType = response.headers()["content-type"] ?? "";
+    expect(contentType).toMatch(/text\/plain/i);
+
     const body = await response.text();
-    expect(body.toLowerCase()).toContain("allow");
-    expect(body).toContain("sitemap.xml");
+    expect(body).toMatch(/User-agent:\s*\*/i);
+    expect(body).toMatch(/Allow:\s*\//i);
+    expect(body).toContain(`Sitemap: ${SITE_URL}/sitemap.xml`);
     expect(body.toLowerCase()).not.toContain("disallow: /");
+    expect(body).not.toMatch(/Allow:\s*\/prickly-pear-guide/i);
+    expect(body).not.toMatch(/Allow:\s*\/recipes\//i);
+  });
+
+  test("sitemap.xml returns 200 with canonical URLs only", async ({
+    request,
+  }) => {
+    const response = await request.get("/sitemap.xml");
+    expect(response.status()).toBe(200);
+
+    const contentType = response.headers()["content-type"] ?? "";
+    expect(contentType).toMatch(/xml/i);
+
+    const body = await response.text();
+    expect(body).toContain(GUIDE_URL);
+    expect(body).toContain(CANONICAL_URL);
+    expect(body).toContain(`<lastmod>${GUIDE_UPDATED_ISO}</lastmod>`);
+    expect(body).toContain("<lastmod>2026-09-01</lastmod>");
+
+    expect(body).not.toContain(`${SITE_URL}</loc>`);
+    expect(body).not.toContain(`${SITE_URL}/</loc>`);
+    expect(body).not.toContain("src=");
+    expect(body).not.toContain("<changefreq>");
+    expect(body).not.toContain("<priority>");
   });
 });
