@@ -13,7 +13,7 @@ export function UsesGrid() {
     >
       <SectionHeading
         id="ways-to-use-heading"
-        title="7 Ways to Use Prickly Pear Jelly"
+        title="6 Ways to Use Prickly Pear Jelly"
         subtitle="From breakfast spreads to prickly pear glazes - ideas to get you started."
         align="center"
       />
@@ -43,7 +43,7 @@ export function UsesGrid() {
       <p className="mt-8 text-center text-sm text-charcoal-light">
         Serving suggestions on the product label include prickly pear glazes for
         lamb and pork, fresh fruit toppings, and Prickly Pear Cheesecake. See{" "}
-        <span className="font-medium">{USES[6].title.toLowerCase()}</span> for
+        <span className="font-medium">{USES[5].title.toLowerCase()}</span> for
         your own culinary experiments. Looking for a full bake? Try{" "}
         <Link
           href="/recipes/arizona-sunrise-muffins"

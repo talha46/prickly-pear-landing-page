@@ -99,11 +99,6 @@ export const USES = [
       "Use as a natural flavor complement as a glaze over lamb, as suggested on the product label.",
   },
   {
-    title: "Glaze for Pork",
-    description:
-      "Brush over pork during the final minutes of roasting for a sweet, colorful finish.",
-  },
-  {
     title: "Fresh Fruit Topping",
     description:
       "Spoon over sliced fresh fruit for a simple dessert or snack, as noted on the packaging.",
