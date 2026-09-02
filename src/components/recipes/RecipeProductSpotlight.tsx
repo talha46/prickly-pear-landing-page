@@ -17,21 +17,22 @@ export function RecipeProductSpotlight({
       className="bg-white px-4 py-16 md:px-8 md:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-6xl">
-        <RecipeReveal className="text-center">
+        <RecipeReveal>
           <h2
             id="product-heading"
             className="font-serif text-3xl font-bold tracking-tight text-charcoal md:text-4xl"
           >
-            Where to Get Prickly Pear Jelly
+            About the jelly in this recipe
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-charcoal-light">
-            Cheri&apos;s Desert Harvest Prickly Pear Cactus Jelly — 5 OZ / 140g
-            (ASIN B000MBM8T8).
+          <p className="mt-3 max-w-2xl text-charcoal-light">
+            Packaged product reference for the 5 oz jar used in the topping
+            above. Cheri&apos;s Desert Harvest Prickly Pear Cactus Jelly — 5 OZ /
+            140g (ASIN B000MBM8T8).
           </p>
         </RecipeReveal>
 
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-sm bg-sand-light p-6 shadow-lg">
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-sm bg-sand-light p-6">
             <Image
               src={recipe.images.product}
               alt="Cheri's Desert Harvest Prickly Pear Cactus Jelly 5 oz jar"
@@ -61,7 +62,7 @@ export function RecipeProductSpotlight({
             </div>
 
             <ul
-              className="mt-6 flex flex-wrap gap-2"
+              className="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-sm text-charcoal-light"
               aria-label="Package attributes"
             >
               {[
@@ -70,12 +71,7 @@ export function RecipeProductSpotlight({
                 "No Artificial Colors",
                 "No Preservatives",
               ].map((attr) => (
-                <li
-                  key={attr}
-                  className="rounded-sm border border-cactus/20 bg-sand-light px-3 py-1.5 text-sm font-medium text-cactus"
-                >
-                  {attr}
-                </li>
+                <li key={attr}>{attr}</li>
               ))}
             </ul>
 

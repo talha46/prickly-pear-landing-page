@@ -4,9 +4,19 @@ export type RecipeIngredient = {
   note?: string;
 };
 
+export type RecipeIngredientGroup = {
+  label: string;
+  items: RecipeIngredient[];
+};
+
 export type RecipeStep = {
   title: string;
   body: string;
+};
+
+export type RecipeStepPhase = {
+  label: string;
+  steps: RecipeStep[];
 };
 
 export type RecipeFaqItem = {
@@ -34,6 +44,18 @@ export type RecipeTechniqueSection = {
   items: string[];
 };
 
+export type RecipeCardMeta = {
+  label: string;
+  value: string;
+};
+
+export type RecipeJarHighlight = {
+  headline: string;
+  body: string;
+  highlightItems: string[];
+  ctaLabel: string;
+};
+
 export type RecipeDefinition = {
   slug: string;
   path: string;
@@ -43,6 +65,10 @@ export type RecipeDefinition = {
   headline: string;
   subheadline: string;
   meta: string[];
+  heroEyebrow: string;
+  heroImageAlt: string;
+  cutOpenImageAlt: string;
+  heroSecondaryCta: string;
   /** ISO date for structured data and visible freshness (YYYY-MM-DD) */
   dateModified: string;
   /** ISO first publication date when known from deployment history */
@@ -57,23 +83,38 @@ export type RecipeDefinition = {
   tipsHeadline: string;
   tipsBody: string[];
   ingredients: RecipeIngredient[];
+  ingredientGroups?: RecipeIngredientGroup[];
+  ingredientsIntro: string;
   ingredientsNote: string;
   stepsHeadline: string;
   stepsIntro: string;
   steps: RecipeStep[];
+  stepPhases?: RecipeStepPhase[];
   bakeTemp: string;
   bakeTempConvection: string;
   bakeTime: string;
+  chillTime?: string;
   difficulty: string;
+  recipeYield?: string;
+  cookTimeIso?: string;
+  totalTimeIso?: string;
+  recipeCategory: string;
+  recipeCuisine: string;
+  schemaKeywords: string[];
   faq: RecipeFaqItem[];
   moreUses: RecipeMoreUse[];
   images: RecipeImages;
   ogImage: string;
   /** Recipe concept attribution — not ownership */
   recipeSource: string;
-  /** Visible note distinguishing source 8 oz jar from linked 5 oz product */
   productJarNote: string;
-  /** Independent operator disclosure shown near product area */
   disclosureText: string;
+  jarHighlight?: RecipeJarHighlight;
+  cardMeta?: RecipeCardMeta[];
+  cardAmazonCtaLabel?: string;
+  finalCtaHeadline: string;
+  finalCtaBody: string;
+  finalCtaPrimaryLabel: string;
+  finalCtaHeroAlt: string;
   sourceMessages?: Record<string, string>;
 };

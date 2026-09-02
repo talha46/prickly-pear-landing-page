@@ -49,7 +49,7 @@ export async function generateMetadata({
           url: recipe.ogImage,
           width: 1600,
           height: 900,
-          alt: "Arizona Sunrise Muffins with prickly pear jelly centers",
+          alt: recipe.cutOpenImageAlt,
         },
       ],
     },

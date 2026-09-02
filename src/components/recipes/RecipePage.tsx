@@ -12,6 +12,7 @@ import { RecipeIngredients } from "./RecipeIngredients";
 import { RecipeSteps } from "./RecipeSteps";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeTips } from "./RecipeTips";
+import { RecipeJarHighlight } from "./RecipeJarHighlight";
 import { RecipeProductSpotlight } from "./RecipeProductSpotlight";
 import { RecipeDisclosure } from "./RecipeDisclosure";
 import { RecipeMoreUses } from "./RecipeMoreUses";
@@ -45,6 +46,7 @@ export function RecipePage({ recipe }: { recipe: RecipeDefinition }) {
         <RecipeSteps recipe={recipe} />
         <RecipeCard recipe={recipe} />
         <RecipeTips recipe={recipe} />
+        <RecipeJarHighlight recipe={recipe} />
         <RecipeProductSpotlight recipe={recipe} />
         <RecipeDisclosure recipe={recipe} />
         <RecipeMoreUses recipe={recipe} />

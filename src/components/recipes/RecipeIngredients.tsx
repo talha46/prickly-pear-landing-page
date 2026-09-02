@@ -3,7 +3,40 @@
 import type { RecipeDefinition } from "@/config/recipes";
 import { RecipeReveal } from "./RecipeReveal";
 
+function IngredientList({
+  items,
+}: {
+  items: RecipeDefinition["ingredients"];
+}) {
+  return (
+    <ul className="mt-4 columns-1 gap-x-10 sm:columns-2">
+      {items.map((ingredient) => (
+        <li
+          key={ingredient.item}
+          className="break-inside-avoid border-b border-sand-dark/50 py-3.5 first:pt-0"
+        >
+          <p className="font-serif text-lg leading-snug text-charcoal">
+            {ingredient.amount ? (
+              <>
+                <span className="text-pear">{ingredient.amount}</span>{" "}
+                {ingredient.item}
+              </>
+            ) : (
+              ingredient.item
+            )}
+          </p>
+          {ingredient.note && (
+            <p className="mt-1 text-sm text-charcoal-light">{ingredient.note}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function RecipeIngredients({ recipe }: { recipe: RecipeDefinition }) {
+  const groups = recipe.ingredientGroups;
+
   return (
     <section
       id="ingredients"
@@ -19,40 +52,32 @@ export function RecipeIngredients({ recipe }: { recipe: RecipeDefinition }) {
             Ingredients
           </h2>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-charcoal-light md:text-lg">
-            A short pantry list for homemade muffins with a prickly pear jelly
-            center.
+            {recipe.ingredientsIntro}
           </p>
         </RecipeReveal>
 
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-          {recipe.ingredients.map((ingredient, index) => (
-            <RecipeReveal key={ingredient.item} delay={index * 0.05}>
-              <li className="border-l-4 border-pear bg-white px-5 py-4 shadow-sm transition-shadow hover:shadow-md">
-                <p className="font-serif text-lg font-bold text-charcoal">
-                  {ingredient.amount ? (
-                    <>
-                      <span className="text-pear">{ingredient.amount}</span>{" "}
-                      {ingredient.item}
-                    </>
-                  ) : (
-                    ingredient.item
-                  )}
-                </p>
-                {ingredient.note && (
-                  <p className="mt-1 text-sm text-charcoal-light">
-                    {ingredient.note}
-                  </p>
-                )}
-              </li>
-            </RecipeReveal>
-          ))}
-        </ul>
+        {groups?.length ? (
+          <div className="mt-10 space-y-10">
+            {groups.map((group) => (
+              <RecipeReveal key={group.label}>
+                <h3 className="font-serif text-xl font-bold text-charcoal md:text-2xl">
+                  {group.label}
+                </h3>
+                <IngredientList items={group.items} />
+              </RecipeReveal>
+            ))}
+          </div>
+        ) : (
+          <RecipeReveal className="mt-10">
+            <IngredientList items={recipe.ingredients} />
+          </RecipeReveal>
+        )}
 
-        <RecipeReveal delay={0.2}>
+        <RecipeReveal delay={0.1}>
           <p className="mt-8 max-w-3xl text-sm leading-relaxed text-charcoal-light md:text-base">
             {recipe.ingredientsNote}
           </p>
-          <p className="mt-4 max-w-3xl rounded-sm border border-sand-dark bg-white p-4 text-sm leading-relaxed text-charcoal-light md:text-base">
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-charcoal-light/90 md:text-base">
             {recipe.productJarNote}
           </p>
         </RecipeReveal>

@@ -4,15 +4,24 @@ import { useEffect, useState } from "react";
 import { AmazonLink } from "@/components/AmazonLink";
 
 const DISMISS_KEY = "ppj_recipe_sticky_dismissed";
+const SCROLL_THRESHOLD = 520;
 
 export function RecipeStickyCTA() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem(DISMISS_KEY) === "true";
-    if (!dismissed) {
-      setVisible(true);
+    if (dismissed) {
+      return;
     }
+
+    const updateVisibility = () => {
+      setVisible(window.scrollY > SCROLL_THRESHOLD);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
   }, []);
 
   if (!visible) {

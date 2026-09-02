@@ -3,6 +3,11 @@ import type { RecipeDefinition } from "@/config/recipes";
 import { RecipeImageReveal, RecipeReveal } from "./RecipeReveal";
 
 export function RecipeSurprise({ recipe }: { recipe: RecipeDefinition }) {
+  const imageSrc = recipe.images.lifestyle ?? recipe.images.cutOpen;
+  const imageAlt = recipe.images.lifestyle
+    ? recipe.heroImageAlt
+    : recipe.cutOpenImageAlt;
+
   return (
     <section
       id="surprise"
@@ -10,10 +15,10 @@ export function RecipeSurprise({ recipe }: { recipe: RecipeDefinition }) {
       className="bg-sand-light px-4 py-16 md:px-8 md:py-20 lg:py-24"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <RecipeImageReveal className="relative aspect-[4/3] rounded-sm shadow-lg">
+        <RecipeImageReveal className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-md">
           <Image
-            src={recipe.images.cutOpen}
-            alt="Arizona Sunrise Muffins with prickly pear jelly centers"
+            src={imageSrc}
+            alt={imageAlt}
             fill
             loading="lazy"
             className="object-cover"

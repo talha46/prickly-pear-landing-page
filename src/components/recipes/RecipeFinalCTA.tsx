@@ -18,11 +18,10 @@ export function RecipeFinalCTA({ recipe }: { recipe: RecipeDefinition }) {
             id="recipe-final-cta-heading"
             className="font-serif text-3xl font-bold text-white md:text-4xl lg:text-[2.75rem]"
           >
-            Ready for a little prickly-pear surprise?
+            {recipe.finalCtaHeadline}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-sand/90 md:text-xl">
-            Bake the muffins, try the jelly center, then explore more ways to
-            use prickly pear jelly.
+            {recipe.finalCtaBody}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <AmazonLink
@@ -30,7 +29,7 @@ export function RecipeFinalCTA({ recipe }: { recipe: RecipeDefinition }) {
               variant="primary"
               className="bg-pear hover:bg-pear-light"
             >
-              Get Prickly Pear Jelly
+              {recipe.finalCtaPrimaryLabel}
             </AmazonLink>
             <Link
               href={GUIDE_PATH}
@@ -45,8 +44,8 @@ export function RecipeFinalCTA({ recipe }: { recipe: RecipeDefinition }) {
         <div className="grid grid-cols-2 gap-4">
           <div className="relative aspect-square overflow-hidden rounded-sm shadow-xl">
             <Image
-              src={recipe.images.hero}
-              alt="Editorial photo of finished Arizona Sunrise Muffins"
+              src={recipe.images.cutOpen}
+              alt={recipe.finalCtaHeroAlt}
               fill
               loading="lazy"
               className="object-cover"
@@ -56,7 +55,7 @@ export function RecipeFinalCTA({ recipe }: { recipe: RecipeDefinition }) {
           <div className="relative aspect-square overflow-hidden rounded-sm bg-sand-light shadow-xl ring-1 ring-gold/20">
             <Image
               src={recipe.images.product}
-              alt="Cheri's Desert Harvest Prickly Pear Cactus Jelly product jar"
+              alt="Cheri's Desert Harvest Prickly Pear Cactus Jelly 5 oz jar"
               fill
               loading="lazy"
               className="object-contain p-4"

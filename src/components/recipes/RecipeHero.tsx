@@ -25,19 +25,19 @@ export function RecipeHero({ recipe, children }: RecipeHeroProps) {
       <div className="absolute inset-0">
         <Image
           src={recipe.images.hero}
-          alt="Arizona Sunrise Muffins with prickly pear jelly centers on a rustic board"
+          alt={recipe.heroImageAlt}
           fill
           priority
-          className="object-cover object-center opacity-45"
+          className="object-cover object-[center_35%] opacity-50"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cactus-dark/75 via-cactus-dark/70 to-cactus-dark/90" />
       </div>
 
-      <div className="relative mx-auto grid min-h-[100dvh] max-w-6xl items-center gap-8 px-4 py-16 md:grid-cols-2 md:gap-12 md:px-8 md:py-20 lg:py-24">
-        <div>
+      <div className="relative mx-auto grid min-h-0 max-w-6xl items-center gap-6 px-4 py-10 md:min-h-[88dvh] md:grid-cols-2 md:gap-12 md:px-8 md:py-20 lg:min-h-[92dvh] lg:py-24">
+        <div className="order-2 md:order-1">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">
-            Homemade muffin recipe
+            {recipe.heroEyebrow}
           </p>
           {sourceMessage && (
             <p className="mt-3 rounded-sm border border-gold/30 bg-gold/10 px-4 py-2.5 text-sm leading-relaxed text-sand">
@@ -66,15 +66,15 @@ export function RecipeHero({ recipe, children }: RecipeHeroProps) {
               Jump to Recipe
             </a>
             <AmazonLink placement="recipe-hero" variant="secondary-light">
-              Get the Prickly Pear Jelly
+              {recipe.heroSecondaryCta}
             </AmazonLink>
           </div>
         </div>
 
-        <RecipeReveal className="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-sm shadow-2xl ring-1 ring-gold/25 md:max-w-none">
+        <RecipeReveal className="relative order-1 mx-auto aspect-[5/4] w-full max-w-lg overflow-hidden rounded-sm shadow-2xl ring-1 ring-gold/25 md:order-2 md:aspect-[4/3] md:max-w-none">
           <Image
             src={recipe.images.cutOpen}
-            alt="Prickly pear jelly visible inside a sliced homemade muffin"
+            alt={recipe.cutOpenImageAlt}
             fill
             priority
             className="object-cover"

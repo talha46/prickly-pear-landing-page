@@ -16,6 +16,12 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
     "400°F / 375°F convection",
     "20–25 minutes",
   ],
+  heroEyebrow: "Homemade muffin recipe",
+  heroImageAlt:
+    "Arizona Sunrise Muffins with prickly pear jelly centers on a rustic board",
+  cutOpenImageAlt:
+    "Prickly pear jelly visible inside a sliced homemade muffin",
+  heroSecondaryCta: "Get the Prickly Pear Jelly",
   datePublished: "2026-08-22",
   dateModified: "2026-09-01",
   updatedLabel: "September 1, 2026",
@@ -89,6 +95,8 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
   ],
   ingredientsNote:
     "Ingredients listed above follow Cheri's Desert Harvest's Arizona Sunrise Muffins recipe.",
+  ingredientsIntro:
+    "A short pantry list for homemade muffins with a prickly pear jelly center.",
   stepsHeadline: "How to Make Arizona Sunrise Muffins",
   stepsIntro:
     "Preheat to 400°F (standard) or 375°F (convection). Bake 20–25 minutes until golden.",
@@ -122,6 +130,16 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
   bakeTempConvection: "375°F convection",
   bakeTime: "20–25 minutes",
   difficulty: "Easy",
+  recipeCategory: "Breakfast",
+  recipeCuisine: "Southwestern",
+  schemaKeywords: [
+    "Arizona Sunrise Muffins",
+    "prickly pear jelly",
+    "prickly pear muffins",
+    "homemade muffins",
+    "prickly pear recipes",
+    "prickly pear breakfast",
+  ],
   faq: [
     {
       question: "What are Arizona Sunrise Muffins?",
@@ -178,6 +196,12 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
         "Learn more about prickly pear jelly — what it is, how it tastes, and seven ways to use it.",
     },
     {
+      title: "Classic Prickly Pear Cheesecake",
+      href: "/recipes/classic-prickly-pear-cheesecake",
+      description:
+        "Make a creamy cheesecake with a sour cream and prickly pear jelly topping using one 5 oz jar.",
+    },
+    {
       title: "Glaze for grilled meats",
       href: "/prickly-pear-guide#uses",
       description: "Brush warmed jelly onto pork chops or chicken during the last minutes of grilling.",
@@ -192,9 +216,13 @@ export const arizonaSunriseMuffins: RecipeDefinition = {
     hero: "/images/arizona-sunrise-muffins-hero.png",
     cutOpen: "/images/arizona-sunrise-muffins-cut-open.png",
     product: "/images/prickly-pear-jelly-jar.png",
-    lifestyle: "/images/arizona-sunrise-muffins-lifestyle.png",
   },
   ogImage: "/images/arizona-sunrise-muffins-cut-open.png",
+  finalCtaHeadline: "Ready for a little prickly-pear surprise?",
+  finalCtaBody:
+    "Bake the muffins, try the jelly center, then explore more ways to use prickly pear jelly.",
+  finalCtaPrimaryLabel: "Get Prickly Pear Jelly",
+  finalCtaHeroAlt: "Editorial photo of finished Arizona Sunrise Muffins",
   sourceMessages: {
     "pinterest-sunrise-muffins":
       "Pinners: this is the full Arizona Sunrise Muffins recipe with prickly pear jelly centers.",

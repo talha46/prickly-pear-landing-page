@@ -1,7 +1,11 @@
 import { arizonaSunriseMuffins } from "./arizona-sunrise-muffins";
+import { classicPricklyPearCheesecake } from "./classic-prickly-pear-cheesecake";
 import type { RecipeDefinition } from "./types";
 
-const recipes: RecipeDefinition[] = [arizonaSunriseMuffins];
+const recipes: RecipeDefinition[] = [
+  arizonaSunriseMuffins,
+  classicPricklyPearCheesecake,
+];
 
 export function getAllRecipes(): RecipeDefinition[] {
   return recipes;
@@ -15,4 +19,4 @@ export function getAllRecipeSlugs(): string[] {
   return recipes.map((recipe) => recipe.slug);
 }
 
-export type { RecipeDefinition } from "./types";
+export type { RecipeDefinition, RecipeIngredient } from "./types";
