@@ -1,25 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AmazonLink } from "@/components/AmazonLink";
 import type { RecipeDefinition } from "@/config/recipes";
-import { getTrafficContext } from "@/lib/traffic";
-import { RecipeReveal } from "./RecipeReveal";
+import { RecipeHeroImage } from "./RecipeHeroImage";
+import { RecipeHeroSourceMessage } from "./RecipeHeroSourceMessage";
 
-type RecipeHeroProps = {
-  recipe: RecipeDefinition;
-  children: React.ReactNode;
-};
-
-export function RecipeHero({ recipe, children }: RecipeHeroProps) {
-  const [sourceMessage, setSourceMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const { source } = getTrafficContext();
-    setSourceMessage(recipe.sourceMessages?.[source] ?? null);
-  }, [recipe.sourceMessages]);
-
+export function RecipeHero({ recipe }: { recipe: RecipeDefinition }) {
   return (
     <header className="relative overflow-hidden bg-cactus-dark">
       <div className="absolute inset-0">
@@ -39,16 +24,17 @@ export function RecipeHero({ recipe, children }: RecipeHeroProps) {
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">
             {recipe.heroEyebrow}
           </p>
-          {sourceMessage && (
-            <p className="mt-3 rounded-sm border border-gold/30 bg-gold/10 px-4 py-2.5 text-sm leading-relaxed text-sand">
-              {sourceMessage}
-            </p>
-          )}
-          {children}
+          <RecipeHeroSourceMessage recipe={recipe} />
+          <h1 className="mt-4 font-serif text-4xl font-bold leading-[1.1] text-white md:text-5xl lg:text-[3.25rem]">
+            {recipe.headline}
+          </h1>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-sand md:text-xl">
             {recipe.subheadline}
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Recipe highlights">
+          <ul
+            className="mt-5 flex flex-wrap gap-2"
+            aria-label="Recipe highlights"
+          >
             {recipe.meta.map((item) => (
               <li
                 key={item}
@@ -71,16 +57,7 @@ export function RecipeHero({ recipe, children }: RecipeHeroProps) {
           </div>
         </div>
 
-        <RecipeReveal className="relative order-1 mx-auto aspect-[5/4] w-full max-w-lg overflow-hidden rounded-sm shadow-2xl ring-1 ring-gold/25 md:order-2 md:aspect-[4/3] md:max-w-none">
-          <Image
-            src={recipe.images.cutOpen}
-            alt={recipe.cutOpenImageAlt}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </RecipeReveal>
+        <RecipeHeroImage recipe={recipe} />
       </div>
     </header>
   );

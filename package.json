@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:e2e": "playwright test",
-    "test:e2e:recipe": "playwright test tests/arizona-sunrise-muffins.spec.ts tests/classic-prickly-pear-cheesecake.spec.ts"
+    "test:e2e:recipe": "playwright test tests/arizona-sunrise-muffins.spec.ts tests/classic-prickly-pear-cheesecake.spec.ts tests/analytics-regression-cheesecake.spec.ts"
   },
   "dependencies": {
     "motion": "^13.1.1",

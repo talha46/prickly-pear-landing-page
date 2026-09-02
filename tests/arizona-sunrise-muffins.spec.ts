@@ -394,11 +394,17 @@ test.describe("Arizona Sunrise Muffins SEO", () => {
     await expect(nav).toContainText("Arizona Sunrise Muffins with Prickly Pear Jelly");
   });
 
-  test("server-rendered HTML contains exactly one H1", async ({ page }) => {
-    await page.goto(RECIPE_PATH);
-    const html = await page.content();
+  test("server-rendered HTML contains exactly one H1", async ({
+    page,
+    request,
+  }) => {
+    const response = await request.get(RECIPE_PATH);
+    const html = await response.text();
     const h1Matches = html.match(/<h1[\s>]/g) ?? [];
     expect(h1Matches).toHaveLength(1);
+    expect(html).toContain("Arizona Sunrise Muffins with Prickly Pear Jelly");
+
+    await page.goto(RECIPE_PATH);
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveText(
       "Arizona Sunrise Muffins with Prickly Pear Jelly"

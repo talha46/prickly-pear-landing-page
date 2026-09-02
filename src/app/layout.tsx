@@ -78,8 +78,9 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics />
         <Suspense fallback={null}>
-          <AnalyticsProvider>{children}</AnalyticsProvider>
+          <AnalyticsProvider />
         </Suspense>
+        {children}
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import {
   trackScrollDepth,
 } from "@/lib/analytics";
 
-export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
+export function AnalyticsProvider() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const scrollTracked = useRef({ fifty: false, ninety: false });
@@ -20,7 +20,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    trackPageView(`${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`);
+    trackPageView(
+      `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`
+    );
     scrollTracked.current = { fifty: false, ninety: false };
   }, [pathname, searchParams]);
 
@@ -70,5 +72,5 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  return null;
 }

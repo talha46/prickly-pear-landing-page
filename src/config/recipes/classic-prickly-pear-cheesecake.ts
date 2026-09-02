@@ -6,7 +6,7 @@ export const classicPricklyPearCheesecake: RecipeDefinition = {
   title: "Classic Prickly Pear Cheesecake",
   seoTitle: "Classic Prickly Pear Cheesecake | Easy Dessert Recipe",
   seoDescription:
-    "Make a classic prickly pear cheesecake with a creamy sour-cream topping made with one 5 oz jar of prickly pear jelly. Explore the recipe and step-by-step instructions.",
+    "Make a classic prickly pear cheesecake with a creamy sour-cream topping made with one 5 oz jar of prickly pear jelly.",
   headline: "Classic Prickly Pear Cheesecake",
   subheadline:
     "A creamy classic cheesecake finished with a vibrant prickly pear jelly and sour cream topping.",

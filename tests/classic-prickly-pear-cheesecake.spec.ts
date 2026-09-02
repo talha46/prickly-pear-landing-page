@@ -4,6 +4,9 @@ import { AMAZON_PRODUCT_URL, SITE_URL, GUIDE_PATH } from "../src/config/product"
 const RECIPE_PATH = "/recipes/classic-prickly-pear-cheesecake";
 const CANONICAL_URL = `${SITE_URL}${RECIPE_PATH}`;
 const SELLER_URL = AMAZON_PRODUCT_URL;
+const EXPECTED_H1 = "Classic Prickly Pear Cheesecake";
+const EXPECTED_META_DESCRIPTION =
+  "Make a classic prickly pear cheesecake with a creamy sour-cream topping made with one 5 oz jar of prickly pear jelly.";
 
 const TOPPING_INGREDIENT = "1 x 5 oz jar Cheri's Prickly Pear Cactus Jelly";
 
@@ -21,13 +24,61 @@ const SOURCE_INGREDIENTS = [
 ];
 
 test.describe("Classic Prickly Pear Cheesecake recipe page", () => {
+  test("server-rendered HTML contains one H1 and valid meta description", async ({
+    request,
+  }) => {
+    const response = await request.get(RECIPE_PATH);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+
+    const titles = html.match(/<title[^>]*>([^<]*)<\/title>/gi) ?? [];
+    expect(titles).toHaveLength(1);
+
+    const descriptionMatch = html.match(
+      /<meta\s+name="description"\s+content="([^"]*)"/i
+    );
+    expect(descriptionMatch).not.toBeNull();
+    const description = descriptionMatch![1];
+    expect(description).toBe(EXPECTED_META_DESCRIPTION);
+    expect(description.length).toBeGreaterThanOrEqual(25);
+    expect(description.length).toBeLessThanOrEqual(160);
+
+    const h1Matches = html.match(/<h1[\s>]/gi) ?? [];
+    expect(h1Matches).toHaveLength(1);
+    expect(html).toContain(`<h1`);
+    expect(html).toContain(EXPECTED_H1);
+  });
+
+  test("tracking parameter preserves SEO tags and canonical", async ({
+    request,
+  }) => {
+    const response = await request.get(`${RECIPE_PATH}?src=test`);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+
+    const descriptionMatch = html.match(
+      /<meta\s+name="description"\s+content="([^"]*)"/i
+    );
+    expect(descriptionMatch?.[1]).toBe(EXPECTED_META_DESCRIPTION);
+
+    const h1Matches = html.match(/<h1[\s>]/gi) ?? [];
+    expect(h1Matches).toHaveLength(1);
+    expect(html).toContain(EXPECTED_H1);
+
+    const canonicalMatch = html.match(
+      /<link\s+rel="canonical"\s+href="([^"]*)"/i
+    );
+    expect(canonicalMatch?.[1]).toBe(CANONICAL_URL);
+    expect(canonicalMatch?.[1]).not.toContain("src=");
+  });
+
   test("page loads with one H1 and required content", async ({ page }) => {
     const response = await page.goto(RECIPE_PATH);
     expect(response?.status()).toBe(200);
 
     await expect(page).toHaveTitle(/Classic Prickly Pear Cheesecake \| Easy Dessert Recipe/i);
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.locator("h1")).toHaveText("Classic Prickly Pear Cheesecake");
+    await expect(page.locator("h1")).toHaveText(EXPECTED_H1);
     await expect(page.locator("#ingredients")).toContainText(TOPPING_INGREDIENT);
     await expect(page.locator("#jar-highlight")).toBeVisible();
   });
